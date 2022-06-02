@@ -11,13 +11,13 @@ import iconBookmark from "./images/icon-bookmark.svg";
 function App() {
   return (
     <main className="relative px-6">
-      <div className="absolute left-0 top-0 -z-50 w-full h-[18.75rem] overflow-hidden">
+      <div className="absolute left-0 top-0 -z-50 w-full h-[18.75rem] overflow-hidden md:h-[25rem]">
         <img className="block md:hidden" src={heroImgMobile} alt="" />
         <img className="hidden md:block" src={heroImgDesktop} alt="" />
         <div className="absolute h-full w-full top-0 left-0 gradient-bg"></div>
       </div>
 
-      <nav className="flex items-center justify-between py-8">
+      <nav className="flex items-center justify-between py-8 max-w-[69.25rem] mx-auto md:py-12">
         <div className="w-32">
           <img className="" src={logo} alt="" />
         </div>
@@ -28,14 +28,14 @@ function App() {
           </button>
         </div>
 
-        <div className="hidden md:flex">
+        <div className="hidden text-white text-sm font-medium md:flex gap-8">
           <a href="/">About</a>
           <a href="/">Discover</a>
           <a href="/">Get Started</a>
         </div>
       </nav>
 
-      <div className="max-w-[45.625rem] mx-auto mt-40">
+      <div className="max-w-[45.625rem] mx-auto mt-40 md:mt-[11.875rem]">
         <div className="relative px-6 py-10 bg-white rounded-lg text-center shadow-sm md:p-12">
           <div className="absolute top-0 left-0 -translate-y-1/2 w-full flex justify-center">
             <img className="" src={logoMastercraft} alt="" />
