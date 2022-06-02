@@ -20,7 +20,7 @@ export default function IntroCard() {
         </p>
 
         <div className="flex justify-between gap-2">
-          <button className="bg-moderateCyan text-white font-bold flex-1 rounded-full max-w-[12.75rem] hover:bg-darkCyan transition-colors ease-out duration-150">
+          <button className="btn flex-1 max-w-[12.75rem]">
             Back this project
           </button>
           <button

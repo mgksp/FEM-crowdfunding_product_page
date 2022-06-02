@@ -1,4 +1,4 @@
-import { FundingDetailsCard, IntroCard } from "./components";
+import { AboutCard, FundingDetailsCard, IntroCard } from "./components";
 
 import heroImgMobile from "./images/image-hero-mobile.jpg";
 import heroImgDesktop from "./images/image-hero-desktop.jpg";
@@ -37,6 +37,7 @@ function App() {
       <div className="grid gap-6 max-w-[45.625rem] mx-auto mt-40 mb-6 md:mt-[11.875rem]">
         <IntroCard />
         <FundingDetailsCard />
+        <AboutCard />
       </div>
     </main>
   );

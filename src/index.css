@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .btn {
+    @apply bg-moderateCyan hover:bg-darkCyan text-white rounded-full font-bold transition-colors ease-out duration-150 px-8 py-4;
+  }
+  .disabledBtn {
+    @apply bg-darkGray text-white font-bold px-8 py-4 cursor-not-allowed rounded-full;
+  }
+}
+
 .gradient-bg {
   background: linear-gradient(
     180deg,
