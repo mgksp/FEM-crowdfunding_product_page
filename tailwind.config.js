@@ -9,6 +9,7 @@ module.exports = {
         moderateCyan: "hsl(176, 50%, 47%)",
         darkCyan: "hsl(176, 72%, 28%)",
         darkGray: "hsl(0, 0%, 48%)",
+        bodyColor: "hsl(0, 0%, 98%)",
       },
     },
   },
