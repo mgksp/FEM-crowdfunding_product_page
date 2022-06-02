@@ -1,4 +1,4 @@
-import { Card } from ".";
+import Card from "./Card";
 
 import logoMastercraft from "../images/logo-mastercraft.svg";
 import iconBookmark from "../images/icon-bookmark.svg";
