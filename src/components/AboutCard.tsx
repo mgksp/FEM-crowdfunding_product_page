@@ -25,6 +25,7 @@ export default function AboutCard() {
 
             return (
               <Card
+                key={backerTier.title}
                 borderColor="border-gray-200"
                 mdPx="md:px-8"
                 custom={noStockLeft ? "opacity-50" : ""}

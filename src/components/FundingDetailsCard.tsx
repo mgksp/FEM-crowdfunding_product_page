@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Card from "./Card";
 
 export default function FundingDetailsCard() {
@@ -26,7 +27,15 @@ export default function FundingDetailsCard() {
         </div>
 
         <div className="relative bg-gray-100 h-3 rounded-full mt-7 md:mt-9">
-          <div className="absolute top-0 left-0 h-full bg-moderateCyan w-[89%] rounded-full"></div>
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: `${(89914 / 100000) * 100}%` }}
+            transition={{
+              type: "spring",
+              stiffness: 70,
+            }}
+            className="absolute top-0 left-0 h-full bg-moderateCyan rounded-full"
+          ></motion.div>
         </div>
       </>
     </Card>
