@@ -14,7 +14,7 @@ function App() {
 
       <Navbar />
 
-      <div className="grid gap-6 max-w-[45.625rem] mx-auto mt-40 mb-6 md:mt-[11.875rem]">
+      <div className="grid gap-6 max-w-[45.625rem] mx-auto mt-40 mb-16 md:mt-[11.875rem]">
         <IntroCard />
         <FundingDetailsCard />
         <AboutCard />

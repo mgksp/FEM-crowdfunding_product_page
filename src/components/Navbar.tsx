@@ -1,4 +1,5 @@
 import { SetStateAction, useState } from "react";
+import { motion } from "framer-motion";
 
 import logo from "../images/logo.svg";
 import iconHamburger from "../images/icon-hamburger.svg";
@@ -55,13 +56,17 @@ const MobNav = ({ setShowMobNav }: MobNavProps) => {
         </button>
       </div>
 
-      <div className="bg-white rounded-lg text-lg font-medium">
+      <motion.div
+        initial={{ y: "-100%" }}
+        animate={{ y: 0 }}
+        className="bg-white rounded-lg text-lg font-medium"
+      >
         <div className="p-6">About</div>
         <hr className="border-0 border-b-1 border-gray-100" />
         <div className="p-6">Discover</div>
         <hr className="border-0 border-b-1 border-gray-100" />
         <div className="p-6">Get Started</div>
-      </div>
+      </motion.div>
     </div>
   );
 };
