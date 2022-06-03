@@ -19,3 +19,11 @@
     rgba(0, 0, 0, 0) 100%
   );
 }
+
+.gradient-bg-mobnav {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}

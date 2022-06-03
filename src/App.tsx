@@ -5,7 +5,7 @@ import heroImgDesktop from "./images/image-hero-desktop.jpg";
 
 function App() {
   return (
-    <main className="relative px-6">
+    <main className="relative px-6 z-0">
       <div className="absolute left-0 top-0 -z-50 w-full h-[18.75rem] overflow-hidden md:h-[25rem]">
         <img className="block md:hidden" src={heroImgMobile} alt="" />
         <img className="hidden md:block" src={heroImgDesktop} alt="" />
