@@ -1,9 +1,20 @@
-import { AboutCard, FundingDetailsCard, IntroCard, Navbar } from "./components";
+import { useState } from "react";
+
+import {
+  AboutCard,
+  BackThisProjectModal,
+  FundingDetailsCard,
+  IntroCard,
+  Navbar,
+} from "./components";
 
 import heroImgMobile from "./images/image-hero-mobile.jpg";
 import heroImgDesktop from "./images/image-hero-desktop.jpg";
 
 function App() {
+  const [showBackThisProjectModal, setShowBackThisProjectModal] =
+    useState(false);
+
   return (
     <main className="relative px-6 z-0">
       <div className="absolute left-0 top-0 -z-50 w-full h-[18.75rem] overflow-hidden md:h-[25rem]">
@@ -14,11 +25,18 @@ function App() {
 
       <Navbar />
 
-      <div className="grid gap-6 max-w-[45.625rem] mx-auto mt-40 mb-16 md:mt-[11.875rem]">
-        <IntroCard />
+      <div className="grid gap-6 max-w-[45.625rem] mx-auto mt-40 pb-16 md:mt-[11.875rem]">
+        <IntroCard setShowBackThisProjectModal={setShowBackThisProjectModal} />
         <FundingDetailsCard />
         <AboutCard />
       </div>
+
+      {showBackThisProjectModal && (
+        <BackThisProjectModal
+          showBackThisProjectModal={showBackThisProjectModal}
+          setShowBackThisProjectModal={setShowBackThisProjectModal}
+        />
+      )}
     </main>
   );
 }

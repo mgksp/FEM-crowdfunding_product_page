@@ -2,8 +2,14 @@ import Card from "./Card";
 
 import logoMastercraft from "../images/logo-mastercraft.svg";
 import iconBookmark from "../images/icon-bookmark.svg";
+import React, { SetStateAction } from "react";
 
-export default function IntroCard() {
+interface IntroCardProps {
+  setShowBackThisProjectModal: React.Dispatch<SetStateAction<boolean>>;
+}
+export default function IntroCard({
+  setShowBackThisProjectModal,
+}: IntroCardProps) {
   return (
     <Card>
       <>
@@ -20,7 +26,10 @@ export default function IntroCard() {
         </p>
 
         <div className="flex justify-between gap-2">
-          <button className="btn flex-1 max-w-[12.75rem]">
+          <button
+            className="btn flex-1 max-w-[12.75rem]"
+            onClick={() => setShowBackThisProjectModal(true)}
+          >
             Back this project
           </button>
           <button

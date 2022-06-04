@@ -13,6 +13,7 @@ module.exports = {
         darkCyan: "hsl(176, 72%, 28%)",
         darkGray: "hsl(0, 0%, 48%)",
         bodyColor: "hsl(0, 0%, 98%)",
+        blackOp25: "rgb(0, 0, 0, 0.25)",
       },
     },
   },

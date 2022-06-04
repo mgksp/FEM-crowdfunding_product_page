@@ -4,6 +4,8 @@ interface CardProps {
   py?: string;
   mdPx?: string;
   mdPy?: string;
+  textAlign?: string;
+  mdTextAlign?: string;
   custom?: string;
   children: JSX.Element;
 }
@@ -14,11 +16,13 @@ export default function Card({
   py = "py-10",
   mdPx = "md:px-12",
   mdPy = "md:px-12",
+  textAlign = "text-center",
+  mdTextAlign = "md:text-left",
   custom,
 }: CardProps) {
   return (
     <div
-      className={`relative ${px} ${py} bg-white rounded-lg text-center border-1 ${borderColor} ${mdPx} ${mdPy} ${custom}`}
+      className={`relative ${px} ${py} bg-white rounded-lg ${textAlign} ${mdTextAlign} border-1 ${borderColor} ${mdPx} ${mdPy} ${custom}`}
     >
       {children}
     </div>
