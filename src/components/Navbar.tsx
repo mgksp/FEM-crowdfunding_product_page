@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from "react";
+import { SetStateAction, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 import logo from "../images/logo.svg";
@@ -31,18 +31,41 @@ export default function Navbar() {
           </button>
         )}
 
-        {showMobNav && <MobNav setShowMobNav={setShowMobNav} />}
+        {showMobNav && (
+          <MobNav showMobNav={showMobNav} setShowMobNav={setShowMobNav} />
+        )}
       </div>
     </nav>
   );
 }
 
 interface MobNavProps {
+  showMobNav: boolean;
   setShowMobNav: React.Dispatch<SetStateAction<boolean>>;
 }
-const MobNav = ({ setShowMobNav }: MobNavProps) => {
+const MobNav = ({ showMobNav, setShowMobNav }: MobNavProps) => {
+  const node = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function closeNavMenu(evt: MouseEvent) {
+      if (
+        showMobNav &&
+        node.current &&
+        !node.current.contains(evt.target as Node)
+      ) {
+        setShowMobNav!(false);
+      }
+    }
+
+    document.addEventListener("mousedown", closeNavMenu);
+
+    return () => {
+      document.removeEventListener("mousedown", closeNavMenu);
+    };
+  }, [showMobNav]);
+
   return (
-    <div className="min-h-screen w-full absolute top-0 left-0 z-50 gradient-bg-mobnav px-6">
+    <div className="min-h-screen w-full absolute top-0 left-0 z-50 gradient-bg-mobnav px-6 h-full">
       <div className="flex items-center justify-between py-8">
         <div className="w-32 h-6">
           <img className="" src={logo} alt="" />
@@ -57,6 +80,7 @@ const MobNav = ({ setShowMobNav }: MobNavProps) => {
       </div>
 
       <motion.div
+        ref={node}
         initial={{ y: "-100%" }}
         animate={{ y: 0 }}
         className="bg-white rounded-lg text-lg font-medium"
