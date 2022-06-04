@@ -55,37 +55,8 @@ export default function BackThisProjectModal({
             </p>
 
             <div className="grid gap-6">
-              <Card
-                borderColor="border-gray-100"
-                textAlign="text-left"
-                py="py-8"
-              >
-                <>
-                  <div className="flex items-center gap-4 mb-8">
-                    <label
-                      className="h-6 w-6 rounded-full border-1 border-gray-200"
-                      htmlFor="no-reward"
-                    >
-                      <input
-                        className="invisible"
-                        type="radio"
-                        id="no-reward"
-                      />
-                    </label>
-
-                    <h3 className="font-bold">Pledge with no reward</h3>
-                  </div>
-
-                  <p className="text-darkGray leading-6">
-                    Choose to support us without a reward if you simply believe
-                    in our project. As a backer, you will be signed up to
-                    receive product updates via email.
-                  </p>
-                </>
-              </Card>
-
               {backerTierList.map((backerTier) => {
-                const noStockLeft = backerTier.stockLeft <= 0;
+                const noStockLeft = backerTier.stockLeft === 0;
 
                 return (
                   <Card
@@ -115,16 +86,24 @@ export default function BackThisProjectModal({
                         </div>
                       </div>
 
-                      <p className="text-darkGray leading-6 mb-6">
+                      <p
+                        className={
+                          backerTier.stockLeft < 0
+                            ? "text-darkGray leading-6"
+                            : "text-darkGray leading-6 mb-6"
+                        }
+                      >
                         {backerTier.description}
                       </p>
 
-                      <p className="text-[0.9375rem] text-darkGray">
-                        <span className="text-lg font-bold text-black">
-                          {backerTier.stockLeft}
-                        </span>{" "}
-                        left
-                      </p>
+                      {!(backerTier.stockLeft < 0) && (
+                        <p className="text-[0.9375rem] text-darkGray">
+                          <span className="text-lg font-bold text-black">
+                            {backerTier.stockLeft}
+                          </span>{" "}
+                          left
+                        </p>
+                      )}
                     </>
                   </Card>
                 );

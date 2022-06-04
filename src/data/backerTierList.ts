@@ -7,6 +7,14 @@ interface iBackerTierList {
 
 export const backerTierList: iBackerTierList[] = [
   {
+    title: "Pledge with no reward",
+    subtitle: "",
+    description: `Choose to support us without a reward if you simply believe
+    in our project. As a backer, you will be signed up to
+    receive product updates via email.`,
+    stockLeft: -1,
+  },
+  {
     title: "Bamboo Stand",
     subtitle: "Pledge $25 or more",
     description: `You get an ergonomic stand made of natural bamboo. You've

@@ -20,9 +20,10 @@ export default function AboutCard() {
         </p>
 
         <div className="grid gap-6">
-          {backerTierList.map((backerTier) => {
+          {backerTierList.map((backerTier, idx) => {
             const noStockLeft = backerTier.stockLeft <= 0;
 
+            if (idx === 0) return;
             return (
               <Card
                 key={backerTier.title}
