@@ -38,7 +38,7 @@ export default function BackThisProjectModal({
   }, [showBackThisProjectModal]);
 
   return (
-    <div className="absolute top-0 left-0 z-50 w-full px-6 py-32 bg-blackOp25 text-sm h-full">
+    <div className="absolute top-0 left-0 z-50 w-full px-6 py-32 bg-blackOp25 text-sm h-full md:text-base">
       <div ref={node} className="max-w-[45.625rem] mx-auto">
         <Card textAlign="text-left">
           <>
@@ -72,6 +72,8 @@ export default function BackThisProjectModal({
                     }
                     textAlign="text-left"
                     py="py-8"
+                    mdPx="md:px-6"
+                    mdPy="md:py-5"
                     custom={noStockLeft ? "opacity-50" : ""}
                   >
                     <>
@@ -133,11 +135,11 @@ export default function BackThisProjectModal({
                           transition={{ duration: 0.2 }}
                           className="overflow-hidden"
                         >
-                          <div className="flex flex-col items-center gap-5 pt-6 mt-6 border-t-2">
+                          <div className="flex flex-col items-center gap-5 pt-6 mt-6 border-t-2 border-gray-200 md:flex-row md:justify-between">
                             <div className="text-darkGray">
                               Enter your pledge
                             </div>
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-2 gap-4 max-w-[15rem]">
                               <div className="relative">
                                 <div className="absolute top-1/2 -translate-y-1/2 left-5 text-darkGray">
                                   $
@@ -145,9 +147,12 @@ export default function BackThisProjectModal({
                                 <input
                                   className="rounded-full h-full w-full border-1 border-gray-200 pl-10 pr-3 font-bold"
                                   type="number"
+                                  defaultValue={backerTier.minPledgeAmt}
                                 />
                               </div>
-                              <button className="btn px-0">Continue</button>
+                              <button className="btn px-0 md:px-5">
+                                Continue
+                              </button>
                             </div>
                           </div>
                         </motion.div>
