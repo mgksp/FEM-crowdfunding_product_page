@@ -10,10 +10,12 @@ import {
 
 import heroImgMobile from "./images/image-hero-mobile.jpg";
 import heroImgDesktop from "./images/image-hero-desktop.jpg";
+import { backerTierEnum } from "./enums/backerTierEnum";
 
 function App() {
   const [showBackThisProjectModal, setShowBackThisProjectModal] =
     useState(false);
+  const [selectedTier, setSelectedTier] = useState<backerTierEnum | null>(null);
 
   return (
     <main className="relative px-6 z-0">
@@ -28,13 +30,18 @@ function App() {
       <div className="grid gap-6 max-w-[45.625rem] mx-auto mt-40 pb-16 md:mt-[11.875rem]">
         <IntroCard setShowBackThisProjectModal={setShowBackThisProjectModal} />
         <FundingDetailsCard />
-        <AboutCard />
+        <AboutCard
+          setShowBackThisProjectModal={setShowBackThisProjectModal}
+          setSelectedTier={setSelectedTier}
+        />
       </div>
 
       {showBackThisProjectModal && (
         <BackThisProjectModal
           showBackThisProjectModal={showBackThisProjectModal}
           setShowBackThisProjectModal={setShowBackThisProjectModal}
+          selectedTier={selectedTier}
+          setSelectedTier={setSelectedTier}
         />
       )}
     </main>

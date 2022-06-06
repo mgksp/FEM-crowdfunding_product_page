@@ -10,13 +10,15 @@ import { backerTierEnum } from "../enums/backerTierEnum";
 interface BackThisProjectModalProps {
   setShowBackThisProjectModal: React.Dispatch<SetStateAction<boolean>>;
   showBackThisProjectModal: boolean;
+  selectedTier: backerTierEnum | null;
+  setSelectedTier: React.Dispatch<SetStateAction<backerTierEnum | null>>;
 }
 export default function BackThisProjectModal({
   setShowBackThisProjectModal,
   showBackThisProjectModal,
+  selectedTier,
+  setSelectedTier,
 }: BackThisProjectModalProps) {
-  const [selectedTier, setSelectedTier] = useState<backerTierEnum | null>(null);
-
   const node = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

@@ -1,7 +1,16 @@
+import { SetStateAction } from "react";
 import { backerTierList } from "../data/backerTierList";
+import { backerTierEnum } from "../enums/backerTierEnum";
 import Card from "./Card";
 
-export default function AboutCard() {
+interface AboutCardProps {
+  setShowBackThisProjectModal: React.Dispatch<SetStateAction<boolean>>;
+  setSelectedTier: React.Dispatch<SetStateAction<backerTierEnum | null>>;
+}
+export default function AboutCard({
+  setShowBackThisProjectModal,
+  setSelectedTier,
+}: AboutCardProps) {
   return (
     <Card>
       <div className="text-left">
@@ -52,7 +61,13 @@ export default function AboutCard() {
                       </p>
                       <p className="text-darkGray">left</p>
                     </div>
-                    <button className={noStockLeft ? "disabledBtn" : "btn"}>
+                    <button
+                      className={noStockLeft ? "disabledBtn" : "btn"}
+                      onClick={() => {
+                        setSelectedTier(backerTier.enum);
+                        setShowBackThisProjectModal(true);
+                      }}
+                    >
                       {noStockLeft ? "Out of stock" : "Select Reward"}
                     </button>
                   </div>
