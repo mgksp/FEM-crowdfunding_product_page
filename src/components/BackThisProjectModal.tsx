@@ -1,9 +1,11 @@
-import { SetStateAction, useEffect, useRef } from "react";
+import { SetStateAction, useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 import Card from "./Card";
 
 import { backerTierList } from "../data/backerTierList";
 import iconCloseModal from "../images/icon-close-modal.svg";
+import { backerTierEnum } from "../enums/backerTierEnum";
 
 interface BackThisProjectModalProps {
   setShowBackThisProjectModal: React.Dispatch<SetStateAction<boolean>>;
@@ -13,6 +15,8 @@ export default function BackThisProjectModal({
   setShowBackThisProjectModal,
   showBackThisProjectModal,
 }: BackThisProjectModalProps) {
+  const [selectedTier, setSelectedTier] = useState<backerTierEnum | null>(null);
+
   const node = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -60,7 +64,12 @@ export default function BackThisProjectModal({
 
                 return (
                   <Card
-                    borderColor="border-gray-100"
+                    key={backerTier.enum}
+                    borderColor={
+                      backerTier.enum === selectedTier
+                        ? "border-moderateCyan"
+                        : "border-gray-200"
+                    }
                     textAlign="text-left"
                     py="py-8"
                     custom={noStockLeft ? "opacity-50" : ""}
@@ -68,14 +77,26 @@ export default function BackThisProjectModal({
                     <>
                       <div className="flex items-center gap-4 mb-8">
                         <label
-                          className="h-6 w-6 rounded-full border-1 border-gray-200"
-                          htmlFor="no-reward"
+                          className="relative h-6 w-6 rounded-full border-1 border-gray-200 cursor-pointer"
+                          htmlFor={backerTier.enum}
                         >
-                          <input
-                            className="invisible"
-                            type="radio"
-                            id="no-reward"
-                          />
+                          {!noStockLeft && (
+                            <input
+                              className="invisible"
+                              value={backerTier.enum}
+                              checked={selectedTier === backerTier.enum}
+                              onChange={() => setSelectedTier(backerTier.enum)}
+                              type="checkbox"
+                              id={backerTier.enum}
+                            />
+                          )}
+                          <div
+                            className={
+                              backerTier.enum === selectedTier
+                                ? "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-3/4 w-3/4 rounded-full bg-moderateCyan"
+                                : ""
+                            }
+                          ></div>
                         </label>
 
                         <div className="">
@@ -103,6 +124,33 @@ export default function BackThisProjectModal({
                           </span>{" "}
                           left
                         </p>
+                      )}
+
+                      {backerTier.enum === selectedTier && (
+                        <motion.div
+                          initial={{ height: 0 }}
+                          animate={{ height: "fit-content" }}
+                          transition={{ duration: 0.2 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="flex flex-col items-center gap-5 pt-6 mt-6 border-t-2">
+                            <div className="text-darkGray">
+                              Enter your pledge
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
+                              <div className="relative">
+                                <div className="absolute top-1/2 -translate-y-1/2 left-5 text-darkGray">
+                                  $
+                                </div>
+                                <input
+                                  className="rounded-full h-full w-full border-1 border-gray-200 pl-10 pr-3 font-bold"
+                                  type="number"
+                                />
+                              </div>
+                              <button className="btn px-0">Continue</button>
+                            </div>
+                          </div>
+                        </motion.div>
                       )}
                     </>
                   </Card>
