@@ -44,7 +44,18 @@ export default function BackThisProjectModal({
 
   return (
     <div className="absolute top-0 left-0 z-50 w-full px-6 py-32 bg-blackOp25 text-sm h-full md:text-base">
-      <div ref={node} className="max-w-[45.625rem] mx-auto">
+      <motion.div
+        initial={{ y: "100%" }}
+        animate={{ y: 0 }}
+        exit={{
+          y: "-100%",
+          transition: {
+            duration: 0.15,
+          },
+        }}
+        ref={node}
+        className="max-w-[45.625rem] mx-auto"
+      >
         <Card textAlign="text-left">
           <>
             <div className="flex justify-between items-center mb-6">
@@ -185,7 +196,7 @@ export default function BackThisProjectModal({
             </div>
           </>
         </Card>
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -1,7 +1,9 @@
+import { SetStateAction, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+
 import Card from "./Card";
 
 import iconCheck from "../images/icon-check.svg";
-import { SetStateAction, useEffect, useRef } from "react";
 
 interface ThanksModalProps {
   showThanksModal: boolean;
@@ -34,7 +36,17 @@ export default function ThanksModal({
   return (
     <div className="absolute top-0 left-0 w-full h-full bg-blackOp25 px-6">
       <div className="h-screen grid items-center text-sm md:text-base max-w-[33.75rem] mx-auto">
-        <div ref={node}>
+        <motion.div
+          initial={{ y: "100%" }}
+          animate={{ y: 0 }}
+          exit={{
+            y: "-100%",
+            transition: {
+              duration: 0.15,
+            },
+          }}
+          ref={node}
+        >
           <Card mdTextAlign="text-center">
             <>
               <img
@@ -55,7 +67,7 @@ export default function ThanksModal({
               </button>
             </>
           </Card>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

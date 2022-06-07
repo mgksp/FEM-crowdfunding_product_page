@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 
 import {
   AboutCard,
@@ -38,22 +39,26 @@ function App() {
         />
       </div>
 
-      {showBackThisProjectModal && (
-        <BackThisProjectModal
-          showBackThisProjectModal={showBackThisProjectModal}
-          setShowBackThisProjectModal={setShowBackThisProjectModal}
-          selectedTier={selectedTier}
-          setSelectedTier={setSelectedTier}
-          setShowThanksModal={setShowThanksModal}
-        />
-      )}
+      <AnimatePresence initial={false} exitBeforeEnter={true}>
+        {showBackThisProjectModal && (
+          <BackThisProjectModal
+            showBackThisProjectModal={showBackThisProjectModal}
+            setShowBackThisProjectModal={setShowBackThisProjectModal}
+            selectedTier={selectedTier}
+            setSelectedTier={setSelectedTier}
+            setShowThanksModal={setShowThanksModal}
+          />
+        )}
+      </AnimatePresence>
 
-      {showThanksModal && (
-        <ThanksModal
-          showThanksModal={showThanksModal}
-          setShowThanksModal={setShowThanksModal}
-        />
-      )}
+      <AnimatePresence initial={false} exitBeforeEnter={true}>
+        {showThanksModal && (
+          <ThanksModal
+            showThanksModal={showThanksModal}
+            setShowThanksModal={setShowThanksModal}
+          />
+        )}
+      </AnimatePresence>
     </main>
   );
 }
