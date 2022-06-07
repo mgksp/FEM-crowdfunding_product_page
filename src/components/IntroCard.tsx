@@ -63,9 +63,9 @@ export default function IntroCard({
                 <path fill="#B1B1B1" d="M23 19v18l5-5.058L33 37V19z" />
               </g>
             </svg>
-            <div className="hidden md:block font-bold pl-4 pr-6">
+            <span className="hidden md:block font-bold pl-4 pr-6">
               {bookmarked ? "Bookmarked" : "Bookmark"}
-            </div>
+            </span>
           </label>
         </div>
       </>
