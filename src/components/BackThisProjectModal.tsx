@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 import Card from "./Card";
@@ -8,16 +8,18 @@ import iconCloseModal from "../images/icon-close-modal.svg";
 import { backerTierEnum } from "../enums/backerTierEnum";
 
 interface BackThisProjectModalProps {
-  setShowBackThisProjectModal: React.Dispatch<SetStateAction<boolean>>;
+  setShowBackThisProjectModal: Dispatch<SetStateAction<boolean>>;
   showBackThisProjectModal: boolean;
   selectedTier: backerTierEnum | null;
-  setSelectedTier: React.Dispatch<SetStateAction<backerTierEnum | null>>;
+  setSelectedTier: Dispatch<SetStateAction<backerTierEnum | null>>;
+  setShowThanksModal: Dispatch<SetStateAction<boolean>>;
 }
 export default function BackThisProjectModal({
   setShowBackThisProjectModal,
   showBackThisProjectModal,
   selectedTier,
   setSelectedTier,
+  setShowThanksModal,
 }: BackThisProjectModalProps) {
   const node = useRef<HTMLDivElement>(null);
 
@@ -29,6 +31,7 @@ export default function BackThisProjectModal({
         !node.current.contains(evt.target as Node)
       ) {
         setShowBackThisProjectModal!(false);
+        setSelectedTier(null);
       }
     }
 
@@ -62,6 +65,9 @@ export default function BackThisProjectModal({
 
             <div className="grid gap-6">
               {backerTierList.map((backerTier) => {
+                const [amount, setAmount] = useState<number>(
+                  backerTier.minPledgeAmt
+                );
                 const noStockLeft = backerTier.stockLeft === 0;
 
                 return (
@@ -148,11 +154,24 @@ export default function BackThisProjectModal({
                                 </div>
                                 <input
                                   className="rounded-full h-full w-full border-1 border-gray-200 pl-10 pr-3 font-bold"
+                                  value={amount}
+                                  onChange={(evt) =>
+                                    setAmount(Number(evt.target.value))
+                                  }
                                   type="number"
-                                  defaultValue={backerTier.minPledgeAmt}
                                 />
                               </div>
-                              <button className="btn px-0 md:px-5">
+                              <button
+                                className="btn px-0 md:px-5"
+                                onClick={() => {
+                                  if (amount >= backerTier.minPledgeAmt) {
+                                    setShowBackThisProjectModal(false);
+                                    window.scrollTo(0, 0);
+                                    setSelectedTier(null);
+                                    setShowThanksModal(true);
+                                  }
+                                }}
+                              >
                                 Continue
                               </button>
                             </div>

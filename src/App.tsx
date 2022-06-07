@@ -6,6 +6,7 @@ import {
   FundingDetailsCard,
   IntroCard,
   Navbar,
+  ThanksModal,
 } from "./components";
 
 import heroImgMobile from "./images/image-hero-mobile.jpg";
@@ -14,8 +15,9 @@ import { backerTierEnum } from "./enums/backerTierEnum";
 
 function App() {
   const [showBackThisProjectModal, setShowBackThisProjectModal] =
-    useState(false);
+    useState<boolean>(false);
   const [selectedTier, setSelectedTier] = useState<backerTierEnum | null>(null);
+  const [showThanksModal, setShowThanksModal] = useState<boolean>(false);
 
   return (
     <main className="relative px-6 z-0">
@@ -42,6 +44,14 @@ function App() {
           setShowBackThisProjectModal={setShowBackThisProjectModal}
           selectedTier={selectedTier}
           setSelectedTier={setSelectedTier}
+          setShowThanksModal={setShowThanksModal}
+        />
+      )}
+
+      {showThanksModal && (
+        <ThanksModal
+          showThanksModal={showThanksModal}
+          setShowThanksModal={setShowThanksModal}
         />
       )}
     </main>

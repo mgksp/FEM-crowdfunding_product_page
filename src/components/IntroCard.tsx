@@ -1,8 +1,7 @@
 import Card from "./Card";
 
 import logoMastercraft from "../images/logo-mastercraft.svg";
-import iconBookmark from "../images/icon-bookmark.svg";
-import React, { SetStateAction } from "react";
+import React, { SetStateAction, useState } from "react";
 
 interface IntroCardProps {
   setShowBackThisProjectModal: React.Dispatch<SetStateAction<boolean>>;
@@ -10,6 +9,8 @@ interface IntroCardProps {
 export default function IntroCard({
   setShowBackThisProjectModal,
 }: IntroCardProps) {
+  const [bookmarked, setBookmarked] = useState<boolean>(false);
+
   return (
     <Card>
       <>
@@ -28,17 +29,44 @@ export default function IntroCard({
         <div className="flex justify-between gap-2">
           <button
             className="btn flex-1 max-w-[12.75rem]"
-            onClick={() => setShowBackThisProjectModal(true)}
+            onClick={() => {
+              window.scrollTo(0, 0);
+              setShowBackThisProjectModal(true);
+            }}
           >
             Back this project
           </button>
-          <button
-            className="rounded-full flex items-center bg-gray-300 text-darkGray"
+          <label
+            className={
+              bookmarked
+                ? "rounded-full flex items-center justify-between bg-gray-200 text-darkCyan cursor-pointer"
+                : "rounded-full flex items-center justify-between bg-gray-300 text-darkGray cursor-pointer hover-svg-bookmark"
+            }
             aria-label="bookmark"
+            htmlFor="bookmark"
           >
-            <img src={iconBookmark} alt="" />
-            <div className="hidden md:block font-bold pl-4 pr-6">Bookmark</div>
-          </button>
+            <input
+              type="checkbox"
+              className="absolute invisible"
+              checked={bookmarked}
+              onChange={() => setBookmarked((prev) => !prev)}
+              id="bookmark"
+            />
+            <svg width="56" height="56" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" fillRule="evenodd">
+                <circle
+                  fill={bookmarked ? "hsl(176, 72%, 28%)" : "#2F2F2F"}
+                  cx="28"
+                  cy="28"
+                  r="28"
+                />
+                <path fill="#B1B1B1" d="M23 19v18l5-5.058L33 37V19z" />
+              </g>
+            </svg>
+            <div className="hidden md:block font-bold pl-4 pr-6">
+              {bookmarked ? "Bookmarked" : "Bookmark"}
+            </div>
+          </label>
         </div>
       </>
     </Card>

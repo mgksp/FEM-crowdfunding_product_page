@@ -27,3 +27,7 @@
     rgba(0, 0, 0, 0.1) 100%
   );
 }
+
+.hover-svg-bookmark:hover > svg > g > circle {
+  @apply fill-darkGray;
+}

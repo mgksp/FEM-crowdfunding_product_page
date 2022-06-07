@@ -66,6 +66,7 @@ export default function AboutCard({
                       onClick={() => {
                         setSelectedTier(backerTier.enum);
                         setShowBackThisProjectModal(true);
+                        window.scrollTo(0, 0);
                       }}
                     >
                       {noStockLeft ? "Out of stock" : "Select Reward"}
